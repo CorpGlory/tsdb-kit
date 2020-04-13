@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '8'
+before_script:
+- npm install
+script:
+- npm test
+
+jobs: 
+  include:
+    - stage: npm release
+      script: 
+        - npm run build
+      deploy:
+        provider: npm
+        skip_cleanup: true
+        email: ping@corpglory.com
+        api_key:
+          secure: hdGJrwq7fny1EPGZqxX7/Khyw4kokW5/304JAvKVSdSVuonGNCNzgPO5UJppdN9UrX3RZTvs5NdaJUGt0Xhq+9UlxfGxg6Gl44kf8AVNFHy6+YsZu4kWCEEeFFLraELeQ+K+2U6LOeoQ7muGvTlLpmfkT+J9NVUgdxHsrmziktt+iWIY2a6gOjJwLXC8lbwBy7UzQq7v8YJX6hU5t4FwlsNFwObpaKRK4xRwSDnTnHurJnTzLNcR5+sp6Ltx0EKAcbwqTXv8iTJsKMfTXimXdWuIrQpuyfpNyfYyjWxK2AU01qFAA3+ianv2sRQHqm56R9oXu+rTC9v8djutwuR4uCaTeeSVIO2zp6HcnWHciNVjUXe1DijjqBU1NIDq5wPPbW9V2meXXCWgW0m2iY+2PDQDa26PIIxS6NvYpwITW903FhBuB6VHGppPu/1J87hzo7FJrWkies4rIpi2xD9tosIQ0EInIi1m2o65oncOGNzUvS9UMyU/e0jGPnQ6Q5sqrUm8juvn+elrevFCrYIYKvQ5k+MJWurTyaq0S0xMx7pacVImKb2pirtxSVmo0nCSpFgagKAkN6+dXLO+siuDMmwMJvKqRg0+9SclYcYjobexiKNLaOulgLfOlSpjbFdVhQjWPJLZL50/y4R5NuiAzOCSeKNvRjw2YHIKaTvCWZg=
+        on:
+          tags: true
+
+notifications:
+  email: false

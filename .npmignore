@@ -1,0 +1,6 @@
+src
+spec
+.travis.yml
+jest.config.js
+tsconfig.jest.json
+tsconfig.json
