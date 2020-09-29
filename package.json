@@ -1,6 +1,6 @@
 {
-  "name": "@corpglory/tsdb-kit",
-  "version": "1.0.1",
+  "name": "grafana-datasource-kit",
+  "version": "0.1.17",
   "description": "",
   "scripts": {
     "build": "tsc",
@@ -9,20 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CorpGlory/tsdb-kit.git"
+    "url": "git+https://github.com/CorpGlory/grafana-datasource-kit.git"
   },
   "author": "CorpGlory Inc.",
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/CorpGlory/tsdb-kit/issues"
+    "url": "https://github.com/CorpGlory/grafana-datasource-kit/issues"
   },
-  "homepage": "https://github.com/CorpGlory/tsdb-kit",
+  "homepage": "https://github.com/CorpGlory/grafana-datasource-kit",
   "dependencies": {
     "axios": "^0.18.0",
-    "lodash": "^4.17.19",
     "moment": "^2.22.2",
     "url": "^0.11.0"
   },

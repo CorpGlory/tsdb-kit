@@ -4,7 +4,7 @@ import { AbstractMetric, Datasource, MetricId } from './metric';
 import { PrometheusMetric } from './prometheus_metric';
 import { PostgresMetric } from './postgres_metric';
 import { ElasticsearchMetric } from './elasticsearch_metric';
-
+import { MysqlMetric } from './mysql_metric';
 
 export function metricFactory(
   datasource: Datasource,
@@ -17,7 +17,8 @@ export function metricFactory(
     'graphite': GraphiteMetric,
     'prometheus': PrometheusMetric,
     'postgres': PostgresMetric,
-    'elasticsearch': ElasticsearchMetric
+    'elasticsearch': ElasticsearchMetric,
+    'mysql': MysqlMetric,
   };
   if(classMap[datasource.type] === undefined) {
     console.error(`Datasources of type ${datasource.type} are not supported currently`);
