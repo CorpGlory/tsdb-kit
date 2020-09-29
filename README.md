@@ -12,7 +12,7 @@ User gets a unified interface to all datasources. Library gives single output fo
 * Influxdb
 * Graphite
 * Prometheus
-* PostgreSQL / TimescaleDB
+* PostgreSQL / TimescaleDB / MySQL
 * ElasticSearch
 
 Please write us at ping@corpglory.com if you want your datasource to be supported: 
