@@ -11,7 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/CorpGlory/tsdb-kit.git"
   },
-  "author": "CorpGlory Inc.",
+  "author":{
+    "name": "CorpGlory Inc."
+  }
   "publishConfig": {
     "access": "public"
   },
@@ -19,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/CorpGlory/tsdb-kit/issues"
   },
-  "homepage": "https://github.com/CorpGlory/tstb-kiy",
+  "homepage": "https://github.com/CorpGlory/tsdb-kit",
   "dependencies": {
     "axios": "^0.18.0",
     "moment": "^2.22.2",
