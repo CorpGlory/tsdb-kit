@@ -3,7 +3,9 @@
   "version": "1.1.1",
   "description": "",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn build:lib && yarn build:bin",
+    "build:lib": "tsc --p tsconfig.lib.json",
+    "build:bin": "tsc --p tsconfig.bin.json",
     "dev": "tsc -w",
     "test": "jest --config jest.config.js"
   },
@@ -34,5 +36,8 @@
     "typescript": "3.3.1"
   },
   "main": "./lib/index.js",
+  "bin": {
+    "tsdb-kit": "bin/tsdb-kit.js"
+  },
   "typings": "./lib/index.d.ts"
 }
