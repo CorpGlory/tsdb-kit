@@ -17,7 +17,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "license": "",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/CorpGlory/tsdb-kit/issues"
   },
