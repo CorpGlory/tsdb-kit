@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "module": "commonjs",
     "target": "es2015",
-    "declaration": true,
+    "declaration": false,
     "outFile": "bin/tsdb-kit.js"
   },
   "include": [ "src/**/*" ],
