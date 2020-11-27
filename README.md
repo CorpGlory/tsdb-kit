@@ -1,6 +1,6 @@
 # tsdb-kit
 
-[![Build Status](https://travis-ci.org/CorpGlory/tsdb-kit.svg?branch=master)](https://travis-ci.org/CorpGlory/grafana-datasource-kit)
+[![Build Status](https://travis-ci.org/CorpGlory/tsdb-kit.svg?branch=master)](https://travis-ci.org/CorpGlory/tsdb-kit)
 
 Node.js library and utilities for running Grafana datasources on backend.
 You can send your datasource metrics from Grafana to compile it on Node.js and query your datasource via Grafana API in background.
