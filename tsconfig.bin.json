@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es2015",
+    "declaration": false,
+    "outFile": "bin/tsdb-kit.js"
+  },
+  "include": [ "src/**/*.ts" ],
+  "exclude": [ "src/index.ts"  ]
+}

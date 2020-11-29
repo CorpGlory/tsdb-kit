@@ -2,5 +2,7 @@ src
 spec
 .travis.yml
 jest.config.js
+tsconfig.lib.json
+tsconfig.bin.json
 tsconfig.jest.json
-tsconfig.json
+
