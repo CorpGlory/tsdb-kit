@@ -30,7 +30,7 @@ describe('simple query', function(){
             {
               "query_string": {
                 "analyze_wildcard": true,
-                "query": "beat.hostname:opt-project.ru AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
+                "query": "beat.hostname:example.com AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
               }
             }
           ]
@@ -142,8 +142,8 @@ describe('simple query', function(){
           "field": "@timestamp",
           "min_doc_count": 0,
           "extended_bounds": {
-            "min": "1545933121101",
-            "max": "1545954721101"
+            "min": "0", // used to be 1545933121101
+            "max": "1"  // used to be 1545954721101
           },
           "format": "epoch_millis"
         },
@@ -183,6 +183,9 @@ describe('simple query', function(){
     let offset = 333;
 
     let result = elasticMetric.getQuery(from, to, limit, offset);
+
+    console.log(result.schema.data);
+    console.log(expectedQuery.schema.data);
 
     expect(result).toEqual(expectedQuery);
   });
