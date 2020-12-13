@@ -100,7 +100,7 @@ describe('simple query', function(){
           "type": "derivative"
         }
       ],
-      "query": "beat.hostname:opt-project.ru AND !system.network.name:\"IBM USB Remote NDIS Network Device\"",
+      "query": "beat.hostname:example.com AND !system.network.name:\"IBM USB Remote NDIS Network Device\"",
       "refId": "A",
       "target": "carbon.agents.0b0226864dc8-a.cpuUsage",
       "timeField": "@timestamp"
@@ -129,7 +129,7 @@ describe('simple query', function(){
           {
             "query_string": {
               "analyze_wildcard": true,
-              "query": "beat.hostname:opt-project.ru AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
+              "query": "beat.hostname:example.com AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
             }
           }
         ]
@@ -173,7 +173,7 @@ describe('simple query', function(){
       url: datasourse.url,
       method: 'POST',
       schema: {
-        data: queryTemplate.map(e => JSON.stringify(e)).join('\n')
+        data: queryTemplate.map(e => JSON.stringify(e)).join('\n') + "\n"
       }
     };
 
