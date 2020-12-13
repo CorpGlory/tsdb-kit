@@ -142,8 +142,8 @@ describe('simple query', function(){
           "field": "@timestamp",
           "min_doc_count": 0,
           "extended_bounds": {
-            "min": "0", // used to be 1545933121101
-            "max": "1"  // used to be 1545954721101
+            "min": "1545933121101",
+            "max": "1545954721101"
           },
           "format": "epoch_millis"
         },
