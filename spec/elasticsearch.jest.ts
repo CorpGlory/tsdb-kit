@@ -179,7 +179,9 @@ describe('simple query', function(){
     let limit = 222;
     let offset = 333;
 
-    expect(elasticMetric.getQuery(from, to, limit, offset)).toEqual(expectedQuery);
+    let result = elasticMetric.getQuery(from, to, limit, offset);
+
+    expect(result).toEqual(expectedQuery);
   });
 
 

@@ -6,5 +6,5 @@
     "outFile": "bin/tsdb-kit.js"
   },
   "include": [ "src/**/*.ts" ],
-  "exclude": [ "src/index.ts"  ]
+  "exclude": [ "src/index.ts" ]
 }
