@@ -173,7 +173,7 @@ describe('simple query', function(){
       url: datasourse.url,
       method: 'POST',
       schema: {
-        data: queryTemplate.map(e => JSON.stringify(e)).join('\n') + "\n"
+        data: queryTemplate.map(e => JSON.stringify(e)).join('\n')
       }
     };
 
