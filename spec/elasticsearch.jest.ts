@@ -184,9 +184,6 @@ describe('simple query', function(){
 
     let result = elasticMetric.getQuery(from, to, limit, offset);
 
-    console.log(result.schema.data);
-    console.log(expectedQuery.schema.data);
-
     expect(result).toEqual(expectedQuery);
   });
 
