@@ -11,7 +11,7 @@ describe('Test query creation', function() {
   let offset = 0;
   let from = 1542983750857;
   let to = 1542984313292;
-  let postgres = getDefaultMetric();
+  let postgres = getMetricForSqlQuery();
   let mQuery: MetricQuery = postgres.getQuery(from, to, limit, offset);
 
   it('test that payload placed to data field', function() {
@@ -31,7 +31,7 @@ describe('Test query creation', function() {
 });
 
 describe('Test result parsing', function() {
-  let postgres = getDefaultMetric();
+  let postgres = getMetricForSqlQuery();
   let timestamps = [1542983800000, 1542983800060, 1542983800120]
   let response = {
     data: {
@@ -216,38 +216,29 @@ describe('Test sql processing', function() {
 });
 
 function checkExpectation(original: string, expected: string, from: number, to: number, limit: number, offset: number) {
-  let metric = getMetricWithSql(original);
+  let metric = getMetricForSqlQuery(original);
   expect(metric.getQuery(from, to, limit, offset).schema.data.queries[0].rawSql).toBe(expected);
 }
 
-function getMetricWithSql(sql: string): PostgresMetric {
-  let metric = getDefaultMetric();
-  metric.datasource.data.queries[0].rawSql = sql;
-  return metric;
-}
-
-function getDefaultMetric(): PostgresMetric {
-  let queryPayload = {
+function getMetricForSqlQuery(query: string = ''): PostgresMetric {
+  const queryPayload = {
     from: 1542983750857,
-    to: 1542984313292,
-    queries:[{
-      refId: 'A',
-      intervalMs:2000,
-      maxDataPoints:191,
-      datasourceId:1,
-      rawSql: 'SELECT\n  \"time\" AS \"time\",\n  val\nFROM local\nORDER BY 1',
-      format: 'time_series'
-    }]
+    to: 1542984313292
   };
 
-  let datasource = {
-      url: 'api/tsdb/query',
-      type: 'postgres',
-      data: queryPayload
+  const datasource = {
+    url: 'api/tsdb/query',
+    type: 'postgres',
+    data: queryPayload
   };
 
-  let targets = [{
+  const targets = [{
     refId: 'A',
+    intervalMs: 2000,
+    maxDataPoints: 191,
+    datasourceId: 1,
+    rawSql: query,
+    format: 'time_series'
   }];
 
   return new PostgresMetric(datasource, targets);
