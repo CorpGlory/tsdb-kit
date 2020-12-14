@@ -30,7 +30,7 @@ describe('simple query', function(){
             {
               "query_string": {
                 "analyze_wildcard": true,
-                "query": "beat.hostname:opt-project.ru AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
+                "query": "beat.hostname:example.com AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
               }
             }
           ]
@@ -100,7 +100,7 @@ describe('simple query', function(){
           "type": "derivative"
         }
       ],
-      "query": "beat.hostname:opt-project.ru AND !system.network.name:\"IBM USB Remote NDIS Network Device\"",
+      "query": "beat.hostname:example.com AND !system.network.name:\"IBM USB Remote NDIS Network Device\"",
       "refId": "A",
       "target": "carbon.agents.0b0226864dc8-a.cpuUsage",
       "timeField": "@timestamp"
@@ -129,7 +129,7 @@ describe('simple query', function(){
           {
             "query_string": {
               "analyze_wildcard": true,
-              "query": "beat.hostname:opt-project.ru AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
+              "query": "beat.hostname:example.com AND !system.network.name:\"IBM USB Remote NDIS Network Device\""
             }
           }
         ]
@@ -167,6 +167,9 @@ describe('simple query', function(){
 
   it('check correct time processing', function() {
     let expectedQuery = {
+      headers: {
+        'Content-Type': 'application/json'
+      },
       url: datasourse.url,
       method: 'POST',
       schema: {
@@ -179,7 +182,9 @@ describe('simple query', function(){
     let limit = 222;
     let offset = 333;
 
-    expect(elasticMetric.getQuery(from, to, limit, offset)).toEqual(expectedQuery);
+    let result = elasticMetric.getQuery(from, to, limit, offset);
+
+    expect(result).toEqual(expectedQuery);
   });
 
 

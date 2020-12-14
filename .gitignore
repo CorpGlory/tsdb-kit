@@ -2,6 +2,5 @@ dist/
 dist-test/
 node_modules/
 npm-debug.log
-.vscode/
 lib/
 bin/

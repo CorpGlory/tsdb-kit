@@ -4,10 +4,10 @@
   "description": "",
   "scripts": {
     "build": "yarn build:lib && yarn build:bin",
-    "build:lib": "tsc --p tsconfig.lib.json",
-    "build:bin": "tsc --p tsconfig.bin.json",
+    "build:lib": "tsc --p lib.tsconfig.json",
+    "build:bin": "tsc --p bin.tsconfig.json",
     "dev": "tsc -w",
-    "test": "jest --config jest.config.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
