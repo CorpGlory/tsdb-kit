@@ -1,12 +1,11 @@
 import { ElasticsearchMetric } from '../src/metrics/elasticsearch_metric';
-import { MetricQuery, Datasource } from '../src/metrics/metric';
+import { Datasource } from '../src/metrics/metric';
 
-import 'jest';
 import * as _ from 'lodash';
 
 describe('simple query', function(){
 
-  let datasourse: Datasource = {
+  let datasource: Datasource = {
     url: "api/datasources/proxy/1/_msearch",
     data: [{
       "search_type": "query_then_fetch",
@@ -65,7 +64,7 @@ describe('simple query', function(){
     }],
     type: "elasticsearch"
   };
-  datasourse.data = datasourse.data.map(d => JSON.stringify(d)).join('\n');
+  datasource.data = datasource.data.map(d => JSON.stringify(d)).join('\n');
 
   let targets = [
     {
@@ -120,8 +119,8 @@ describe('simple query', function(){
           {
             "range": {
               "@timestamp": {
-                "gte": "0",
-                "lte": "1",
+                "gte": "1545933121101",
+                "lte": "1545954721101",
                 "format": "epoch_millis"
               }
             }
@@ -163,24 +162,35 @@ describe('simple query', function(){
     }
   }];
 
-  let elasticMetric = new ElasticsearchMetric(datasourse, targets);
+  let elasticMetric = new ElasticsearchMetric(datasource, targets);
 
   it('check correct time processing', function() {
-    let expectedQuery = {
-      headers: {
-        "Content-Type": 'application/json'
-      },
-      url: datasourse.url,
-      method: 'POST',
-      schema: {
-        data: queryTemplate.map(e => JSON.stringify(e)).join('\n')
-      }
+    const expectedQueryTemplate = _.cloneDeep(queryTemplate);
+
+    const from = 0;
+    const to = 1;
+    const limit = 222;
+    const offset = 333;
+
+    expectedQueryTemplate[1].query.bool.filter[0].range['@timestamp'].gte = from.toString();
+    expectedQueryTemplate[1].query.bool.filter[0].range['@timestamp'].lte = to.toString();
+
+
+    expectedQueryTemplate[1].aggs["2"].date_histogram.extended_bounds = {
+      min: from.toString(),
+      max: to.toString()
     };
 
-    let from = 0;
-    let to = 1;
-    let limit = 222;
-    let offset = 333;
+    let expectedQuery = {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      url: datasource.url,
+      method: 'POST',
+      schema: {
+        data: expectedQueryTemplate.map(e => JSON.stringify(e)).join('\n') + '\n'
+      }
+    };
 
     let result = elasticMetric.getQuery(from, to, limit, offset);
 
@@ -248,11 +258,12 @@ describe('simple query', function(){
   it('check results parsing', function() {
     let expectedResult = {
       columns: ['timestamp', 'target'],
-      values: [[1545934140000, null],
-               [1545934200000, 991287.4583339691],
-               [1545934260000, 898992.5]
-              ]
-    }
+      values: [
+        [1545934140000, null],
+        [1545934200000, 991287.4583339691],
+        [1545934260000, 898992.5]
+      ]
+    };
 
     expect(elasticMetric.getResults(result)).toEqual(expectedResult);
   });
