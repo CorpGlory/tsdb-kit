@@ -7,7 +7,7 @@
     "build:lib": "tsc --p lib.tsconfig.json",
     "build:bin": "tsc --p bin.tsconfig.json",
     "dev": "tsc -w",
-    "test": "jest "
+    "test": "jest"
   },
   "repository": {
     "type": "git",
