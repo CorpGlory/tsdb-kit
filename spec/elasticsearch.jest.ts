@@ -168,7 +168,7 @@ describe('simple query', function(){
   it('check correct time processing', function() {
     let expectedQuery = {
       headers: {
-        "Content-Type": 'application/json'
+        'Content-Type': 'application/json'
       },
       url: datasourse.url,
       method: 'POST',
