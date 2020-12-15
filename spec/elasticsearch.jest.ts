@@ -175,7 +175,6 @@ describe('simple query', function(){
     expectedQueryTemplate[1].query.bool.filter[0].range['@timestamp'].gte = from.toString();
     expectedQueryTemplate[1].query.bool.filter[0].range['@timestamp'].lte = to.toString();
 
-
     expectedQueryTemplate[1].aggs["2"].date_histogram.extended_bounds = {
       min: from.toString(),
       max: to.toString()
